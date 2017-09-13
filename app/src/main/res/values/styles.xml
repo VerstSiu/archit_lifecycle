@@ -8,4 +8,16 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+  <style name="Login"/>
+
+  <style name="Login.LabelText">
+    <item name="android:minWidth">@dimen/login_label_min_width</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:textSize">@dimen/login_label_text_size</item>
+  </style>
+
+  <style name="Login.Edit">
+    <item name="android:textSize">@dimen/login_edit_text_size</item>
+  </style>
+
 </resources>

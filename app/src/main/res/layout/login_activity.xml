@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="@dimen/login_page_padding">
+
+  <TextView
+    android:id="@+id/username_label"
+    style="@style/Login.LabelText"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/login_line_height"
+    android:text="@string/login_label_username"/>
+
+  <EditText
+    android:id="@+id/username_title"
+    style="@style/Login.Edit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:layout_toRightOf="@id/username_label"
+    android:layout_toEndOf="@id/username_label"
+    android:layout_alignBaseline="@id/username_label"
+    android:layout_marginLeft="@dimen/login_line_margin"
+    android:layout_marginStart="@dimen/login_line_margin"
+    android:inputType="text"/>
+
+  <TextView
+    android:id="@+id/password_label"
+    style="@style/Login.LabelText"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/login_line_height"
+    android:layout_below="@id/username_label"
+    android:layout_marginTop="@dimen/login_line_margin"
+    android:text="@string/login_label_password"/>
+
+  <EditText
+    android:id="@+id/password_title"
+    style="@style/Login.Edit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:layout_toRightOf="@id/password_label"
+    android:layout_toEndOf="@id/password_label"
+    android:layout_alignBaseline="@id/password_label"
+    android:layout_marginLeft="@dimen/login_line_margin"
+    android:layout_marginStart="@dimen/login_line_margin"
+    android:inputType="textPassword"/>
+
+  <Button
+    android:id="@+id/login"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/login_line_height"
+    android:layout_below="@id/password_label"
+    android:layout_marginTop="@dimen/login_action_button_margin_top"
+    android:minWidth="@dimen/login_action_button_min_width"
+    android:text="@string/login_action_login"/>
+
+</RelativeLayout>
