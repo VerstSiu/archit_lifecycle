@@ -11,6 +11,9 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import sample.ijoic.architlifecycle.constants.LoginMessage;
+import sample.ijoic.architlifecycle.model.LoginModel;
+import sample.ijoic.architlifecycle.model.impl.LoginModelImpl;
 
 /**
  * Login activity.
@@ -26,14 +29,7 @@ public class LoginActivity extends AppCompatActivity {
   @BindView(R.id.password_title)
   TextView password;
 
-  private static final int MSG_USERNAME_EMPTY = 0x01;
-  private static final int MSG_PASSWORD_EMPTY = 0x02;
-  private static final int MSG_USERNAME_ERROR = 0x03;
-  private static final int MSG_PASSWORD_ERROR = 0x04;
-  private static final int MSG_LOGIN_SUCCESS = 0x05;
-
-  private static final String DST_USERNAME = "ijoic";
-  private static final String DST_PASSWORD = "1234567";
+  private final LoginModel loginModel = new LoginModelImpl();
 
   @OnClick(R.id.login)
   void login() {
@@ -41,40 +37,23 @@ public class LoginActivity extends AppCompatActivity {
     String passwordText = password.getText().toString();
 
     if (TextUtils.isEmpty(usernameText)) {
-      showMessage(MSG_USERNAME_EMPTY);
+      showMessage(LoginMessage.MSG_USERNAME_EMPTY);
       return;
     }
     if (TextUtils.isEmpty(passwordText)) {
-      showMessage(MSG_PASSWORD_EMPTY);
+      showMessage(LoginMessage.MSG_PASSWORD_EMPTY);
       return;
     }
     login(usernameText, passwordText);
   }
 
   private void login(@NonNull final String username, @NonNull final String password) {
-    new Thread() {
+    loginModel.login(username, password, new LoginModel.OnLoginCompleteListener() {
       @Override
-      public void run() {
-        try {
-          Thread.sleep(2000);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-
-        runOnUiThread(new Runnable() {
-          @Override
-          public void run() {
-            if (!username.equals(DST_USERNAME)) {
-              showMessage(MSG_USERNAME_ERROR);
-            } else if (!password.equals(DST_PASSWORD)) {
-              showMessage(MSG_PASSWORD_ERROR);
-            } else {
-              showMessage(MSG_LOGIN_SUCCESS);
-            }
-          }
-        });
+      public void onLoginComplete(boolean isSuccess, int msg) {
+        showMessage(msg);
       }
-    }.start();
+    });
   }
 
   private void showMessage(int msg) {
@@ -88,19 +67,19 @@ public class LoginActivity extends AppCompatActivity {
   @StringRes
   private static int mapMsgRes(int msg) {
     switch (msg) {
-      case MSG_USERNAME_EMPTY:
+      case LoginMessage.MSG_USERNAME_EMPTY:
         return R.string.login_msg_username_empty;
 
-      case MSG_PASSWORD_EMPTY:
+      case LoginMessage.MSG_PASSWORD_EMPTY:
         return R.string.login_msg_password_empty;
 
-      case MSG_USERNAME_ERROR:
+      case LoginMessage.MSG_USERNAME_ERROR:
         return R.string.login_msg_username_error;
 
-      case MSG_PASSWORD_ERROR:
+      case LoginMessage.MSG_PASSWORD_ERROR:
         return R.string.login_msg_password_error;
 
-      case MSG_LOGIN_SUCCESS:
+      case LoginMessage.MSG_LOGIN_SUCCESS:
         return R.string.login_msg_login_success;
     }
     return 0;
