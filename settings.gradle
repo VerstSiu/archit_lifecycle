@@ -1,1 +1,1 @@
-include ':app', ':lib.archit_lifecycle'
+include ':app'
