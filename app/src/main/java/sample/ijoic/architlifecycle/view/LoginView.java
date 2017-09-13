@@ -32,9 +32,16 @@ public interface LoginView {
   void setOnLoginActionListener(OnLoginActionListener listener);
 
   /**
+   * Bind resources.
+   *
+   * @param rootActivity root activity.
+   */
+  void bindRes(@NonNull Activity rootActivity);
+
+  /**
    * Initialize.
    */
-  void init(@NonNull Activity rootActivity);
+  void init();
 
   /**
    * Show message.

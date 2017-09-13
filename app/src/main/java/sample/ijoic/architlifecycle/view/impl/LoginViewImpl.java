@@ -64,8 +64,17 @@ public class LoginViewImpl implements LoginView {
   }
 
   @Override
-  public void init(@NonNull Activity rootActivity) {
+  public void bindRes(@NonNull Activity rootActivity) {
     this.rootActivity = rootActivity;
+  }
+
+  @Override
+  public void init() {
+    Activity rootActivity = this.rootActivity;
+
+    if (rootActivity == null) {
+      return;
+    }
     ButterKnife.bind(this, rootActivity);
     viewReady = true;
   }
