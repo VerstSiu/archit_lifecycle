@@ -22,7 +22,7 @@ import sample.ijoic.architlifecycle.viewmodel.LoginViewModel;
  * @author verstSiu verstsiu@126.com
  * @version 1.0
  */
-public class LoginViewImpl extends BaseActivityStateViewImpl<LoginViewModel> implements LoginUI {
+public class LoginViewImpl extends BaseStateViewImpl<LoginViewModel, Activity> implements LoginUI {
 
   @BindView(R.id.username_title)
   TextView userName;
@@ -45,8 +45,8 @@ public class LoginViewImpl extends BaseActivityStateViewImpl<LoginViewModel> imp
   }
 
   @Override
-  protected void onInit(@NonNull Activity rootActivity) {
-    ButterKnife.bind(this, rootActivity);
+  protected void onInit(@NonNull Activity root) {
+    ButterKnife.bind(this, root);
   }
 
   @Nullable
@@ -66,7 +66,7 @@ public class LoginViewImpl extends BaseActivityStateViewImpl<LoginViewModel> imp
     if (!isViewReady()) {
       return;
     }
-    Context context = getRootActivity();
+    Context context = getRoot();
     int msgRes = mapMsgRes(msg);
 
     if (context != null && msgRes != 0) {
