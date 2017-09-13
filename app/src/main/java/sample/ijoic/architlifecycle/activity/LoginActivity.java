@@ -1,8 +1,9 @@
-package sample.ijoic.architlifecycle;
+package sample.ijoic.architlifecycle.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import sample.ijoic.architlifecycle.R;
 import sample.ijoic.architlifecycle.model.LoginModel;
 import sample.ijoic.architlifecycle.model.impl.LoginModelImpl;
 import sample.ijoic.architlifecycle.presenter.StatePresenter;
